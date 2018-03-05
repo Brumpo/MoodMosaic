@@ -3,6 +3,9 @@ import Login from './components/login.js'
 import Signup from './components/signup.js'
 import Landing from './components/landing.js'
 import Nav from './components/nav.js'
+import Home from './components/home.js'
+import Mosaic from './components/mosaic.js'
+
 import { BrowserRouter, Link, Route} from 'react-router-dom'
 import './App.css';
 
@@ -12,7 +15,7 @@ class App extends Component {
     this.state = {
       user:{
         token: '',
-        name: ''
+        id: 0
       }
     }
     this.fetchNewState = this.fetchNewState.bind(this)
@@ -29,7 +32,6 @@ class App extends Component {
       body: body
     })
     var json = await response.json()
-    console.log(json)
     if(!json) return {error: 'something went worng please try again'}
     if(json.error) return {error: 'incorrect user name or password'}
     if(json.message) return {error: json.message}
@@ -54,6 +56,12 @@ class App extends Component {
         )}/>
         <Route path='/login' render={()=>(
           <Login fetchNewState = {this.fetchNewState}/>
+        )}/>
+        <Route path='/home' render={()=>(
+          <Home/>
+        )}/>
+        <Route exact path='/mosaic' render={()=>(
+          <Mosaic/>
         )}/>
       </div>
       </BrowserRouter>
