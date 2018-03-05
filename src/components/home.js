@@ -6,7 +6,7 @@ export default class Home extends Component {
     return(
       <div>
         <h1>dont you people have homes</h1>
-        <Link to='/mosaic'></Link>
+        <Link to='/mosaic'>Continue</Link>
       </div>
     )
   }
