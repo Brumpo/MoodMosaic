@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 
-export default class Journal extends Component {
+export default class AddJournal extends Component {
   constructor(props) {
     super(props)
     this.state = {

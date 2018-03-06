@@ -13,14 +13,13 @@ export default class Signup extends Component{
    e.preventDefault()
    const route = 'create_user'
    const method = 'POST'
-   var body = {
+   let body = {
      fname:this.refs.fname.value,
      lname:this.refs.lname.value,
      email:this.refs.email.value,
      password: this.refs.password.value
    }
-   var error = await this.props.fetchNewState(method,body,route)
-   error = error.error
+   let {error} = await this.props.fetchNewState(method,body,route)
    console.log(error)
    this.setState({error})
   }

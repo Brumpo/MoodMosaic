@@ -5,7 +5,7 @@ import Landing from './components/landing.js'
 import Nav from './components/nav.js'
 import Home from './components/home.js'
 import Mosaic from './components/mosaic.js'
-import Journal from './components/journal.js'
+import AddJournal from './components/addJournal.js'
 import { BrowserRouter, Link, Route} from 'react-router-dom'
 import './App.css';
 
@@ -63,8 +63,8 @@ class App extends Component {
         <Route exact path='/mosaic' render={()=>(
           <Mosaic/>
         )}/>
-        <Route exact path='/journal' render={()=>(
-          <Journal fetchNewState = {this.fetchNewState}/>
+        <Route exact path='/addjournal' render={()=>(
+          <AddJournal fetchNewState = {this.fetchNewState}/>
         )}/>
       </div>
       </BrowserRouter>

@@ -18,9 +18,7 @@ export default class Login extends Component{
       email : this.refs.email.value,
       password : this.refs.password.value
     }
-    let error = await this.props.fetchNewState(method,body,route)
-    error = error.error
-    console.log(error)
+    let {error} = await this.props.fetchNewState(method,body,route)
     this.setState({error})
   }
 
