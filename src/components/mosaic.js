@@ -4,7 +4,8 @@ import Scroll from './scroll.js';
 import Nav from './nav.js';
 import Tile from './tiles.js'
 import AtAGlance from './atAGlance.js'
-import {setUp} from '../dateProto.js'
+import {setUp, yeartodate} from '../dateProto.js'
+import seeds from '../seeders.js'
 
 export default class Mosaic extends Component{
   constructor(props) {
@@ -13,61 +14,62 @@ export default class Mosaic extends Component{
       filter:'month',
       start: -1,
       end: -1,
-      tiles: []
+      year: 2018,
+      tiles: [],
+      atAGlance: 'please mouse over a tile to view at a glance stats for that day'
     }
-    this.changeFilter = this.changeFilter.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
+    this.componentWillMount = this.componentWillMount.bind(this)
+    this.updateAtAGlance = this.updateAtAGlance.bind(this)
+    this.getTiles = this.getTiles.bind(this)
   }
-
-  async componentDidMount(){
+  async componentWillMount(){
     setUp()
     let today = new Date()
     let start = today.getFOM()
     let end = today.getLOM()
-    let year = today.getYear()+1900
-    let dayofyear = today.getDOY()
-    console.log(start,end);
+    let year = today.getFullYear()
+    console.log(start,end)
+    this.getTiles(start, end, year)
+  }
+  async getTiles(start, end, year, filter = this.state.filter){
+    let result = await fetch(`http://localhost:4200/api/dates/?uuid=${this.props.userId}&year=${year}&start=${start}&end=${end}`)
+    let json = await result.json()
     this.setState({
-      start,
-      end
+      start: start,
+      end: end,
+      year: year,
+      tiles: json.data,
+      filter: filter
     })
   }
 
-  changeFilter(filter,start,end){
-    this.setState({filter})
+  updateAtAGlance(atAGlance){
+    this.setState({
+      atAGlance
+    })
   }
 
   render(){
-    if(this.state.filter==='week'){
-      return(
-        <div>
-          <Nav/>
-          <h1>week</h1>
-          <Scroll changeFilter={this.changeFilter} filter={this.state.filter}
-           start={this.state.start} end={this.state.end}/>
-          <AtAGlance/>
+    console.log(this.state)
+    return(
+      <div>
+        <Nav/>
+        <div className={this.state.filter}>
+        {
+          this.state.tiles.map((tile)=>{
+            if(tile.day>=this.state.start){
+              if(tile.day<=this.state.end){
+                return (<Tile tile={tile} updateAtAGlance={this.updateAtAGlance}/>)
+              }
+            }
+          })
+        }
         </div>
-      )
-    }else if(this.state.filter==='year'){
-      return(
-        <div>
-          <Nav/>
-          <h1>year</h1>
-          <Scroll changeFilter={this.changeFilter} filter={this.state.filter}
-           start={this.state.start} end={this.state.end}/>
-          <AtAGlance/>
-        </div>
-      )
-    }else{
-      return(
-        <div>
-          <Nav/>
-          <h1>month</h1>
-          <Scroll changeFilter={this.changeFilter} filter={this.state.filter}
-           start={this.state.start} end={this.state.end}/>
-          <AtAGlance/>
-        </div>
-      )
-    }
+        <Scroll getTiles={this.getTiles} filter={this.state.filter}
+         start={this.state.start} end={this.state.end}
+         mid={Math.max(this.state.start + this.state.end)/2} year={this.state.year}/>
+        <AtAGlance atAGlance={this.state.atAGlance}/>
+      </div>
+    )
   }
 }

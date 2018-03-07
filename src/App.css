@@ -26,3 +26,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.month{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.tile{
+  height: 5%;
+  width: 5%;
+}

@@ -18,7 +18,8 @@ function setUp(){
   Date.prototype.getFOM = function(){
     var dayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
     var mn = this.getMonth();
-    var fom = dayCount[mn]++
+    var fom = dayCount[mn]
+    fom++
     if(mn > 1 && this.isLeapYear()) fom++;
     return fom
   }
@@ -57,7 +58,7 @@ function yeartodate(doy, year){
   var dayCount = isLeap ?
   [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366] :
   [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]
-  for (var i = dayCount.length - 1 ; i > 0; i--) {
+  for (var i = dayCount.length - 1 ; i >= 0; i--) {
     if(doy - dayCount[i] > 0){
       monthindex = i
       dayindex = doy-(dayCount[i])

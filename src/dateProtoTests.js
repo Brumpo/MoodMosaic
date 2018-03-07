@@ -48,17 +48,17 @@ describe('date.prototype.getFOM', function(){
   it('should return the first of the month for a given date',function(){
     let actual = new Date('December 31, 2019, 23:15:30 GMT+11:00')
     actual = actual.getFOM()
-    let expected = 334
+    let expected = 335
     assert.equal(actual, expected)
   })
   it('should work for leap years', function(){
     let actual = new Date('December 31, 2020, 23:15:30 GMT+11:00')
     actual = actual.getFOM()
-    let expected = 335
+    let expected = 336
     assert.equal(actual, expected)
     actual = new Date('January 31, 2020, 23:15:30 GMT+11:00')
     actual = actual.getFOM()
-    expected = 0
+    expected = 1
     assert.equal(actual, expected)
   })
 })
@@ -126,8 +126,11 @@ describe('date.prototype.getLOW', function(){
 
 describe('year to date()', function(){
   it('should return a date object for the given year index', function(){
-    let actual = yeartodate(365, 2019)
-    let expected = new Date('December 31, 2019, 23:15:30 GMT+11:00')
+    let actual = yeartodate(60, 2018)
+    let expected = new Date('March 1, 2018, 23:15:30 GMT+11:00')
+    assert.equal(actual.toString(), expected.toString())
+    actual = yeartodate(2,2018)
+    expected = new Date('January 2, 2018, 23:15:30 GMT+11:00')
     assert.equal(actual.toString(), expected.toString())
   })
   it('should work for leap years', function(){

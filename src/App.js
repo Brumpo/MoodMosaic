@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       user:{
         token: '',
-        id: 0
+        id: 1
       }
     }
     this.fetchNewState = this.fetchNewState.bind(this)
@@ -36,15 +36,16 @@ class App extends Component {
     if(json.error) return {error: 'incorrect user name or password'}
     if(json.message) return {error: json.message}
     console.log(json)
-    // this.setState({
-    //   user:{
-    //     token:response.token,
-    //     name: response.fname
-    //   }
-    // })
+    this.setState({
+      user:{  
+        token:json.token,
+        id: json.id
+      }
+    })
     return {error: false}
   }
   render() {
+    console.log('app', this.state.user);
     return (
       <BrowserRouter>
       <div>
@@ -61,7 +62,7 @@ class App extends Component {
           <Home/>
         )}/>
         <Route exact path='/mosaic' render={()=>(
-          <Mosaic/>
+          <Mosaic userId={this.state.user.id}/>
         )}/>
         <Route exact path='/addjournal' render={()=>(
           <AddJournal fetchNewState = {this.fetchNewState}/>

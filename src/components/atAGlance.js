@@ -10,6 +10,7 @@ export default class AtAGlance extends Component {
     return(
       <div>
         <h1>At A Glance</h1>
+        <p>{this.props.atAGlance}</p>
       </div>
     )
   }
