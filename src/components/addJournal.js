@@ -26,7 +26,7 @@ export default class AddJournal extends Component {
   }
 
   render(){
-    if(this.state.error===false) return <Redirect to='/login'/>
+    if(this.state.error===false) return <Redirect to='/mosaic'/>
     return(
       <div>
         <form onSubmit={this.handleSubmit}>

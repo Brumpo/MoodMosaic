@@ -6,6 +6,7 @@ import Nav from './components/nav.js'
 import Home from './components/home.js'
 import Mosaic from './components/mosaic.js'
 import AddJournal from './components/addJournal.js'
+import About from './components/about.js'
 import { BrowserRouter, Link, Route} from 'react-router-dom'
 import './App.css';
 
@@ -37,7 +38,7 @@ class App extends Component {
     if(json.message) return {error: json.message}
     console.log(json)
     this.setState({
-      user:{  
+      user:{
         token:json.token,
         id: json.id
       }
@@ -66,6 +67,9 @@ class App extends Component {
         )}/>
         <Route exact path='/addjournal' render={()=>(
           <AddJournal fetchNewState = {this.fetchNewState}/>
+        )}/>
+        <Route exact path='/about' render={()=>(
+          <About/>
         )}/>
       </div>
       </BrowserRouter>
