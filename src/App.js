@@ -6,6 +6,7 @@ import Nav from './components/nav.js'
 import Home from './components/home.js'
 import Mosaic from './components/mosaic.js'
 import AddJournal from './components/addJournal.js'
+import Journal from './components/journal.js'
 import About from './components/about.js'
 import { BrowserRouter, Link, Route} from 'react-router-dom'
 import './App.css';
@@ -14,13 +15,22 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
+      activeTile:{},
       user:{
         token: '',
         id: 1
       }
     }
     this.fetchNewState = this.fetchNewState.bind(this)
+    this.hoist = this.hoist.bind(this)
   }
+
+  hoist(state){
+    this.setState({
+      activeTile: state
+    })
+  }
+
   async fetchNewState(method,body,route){
     body = JSON.stringify(body)
     var response = await fetch(`http://localhost:4200/api/${route}`,{
@@ -46,32 +56,35 @@ class App extends Component {
     return {error: false}
   }
   render() {
-    console.log('app', this.state.user);
+    console.log('app', this.state);
     return (
       <BrowserRouter>
-      <div>
-        <Route exact path='/' render={()=>(
-          <Landing/>
-        )}/>
-        <Route path='/signup' render={()=>(
-          <Signup fetchNewState = {this.fetchNewState}/>
-        )}/>
-        <Route path='/login' render={()=>(
-          <Login fetchNewState = {this.fetchNewState}/>
-        )}/>
-        <Route path='/home' render={()=>(
-          <Home/>
-        )}/>
-        <Route exact path='/mosaic' render={()=>(
-          <Mosaic userId={this.state.user.id}/>
-        )}/>
-        <Route exact path='/addjournal' render={()=>(
-          <AddJournal fetchNewState = {this.fetchNewState}/>
-        )}/>
-        <Route exact path='/about' render={()=>(
-          <About/>
-        )}/>
-      </div>
+        <div>
+          <Route exact path='/' render={()=>(
+            <Landing/>
+          )}/>
+          <Route path='/signup' render={()=>(
+            <Signup fetchNewState = {this.fetchNewState}/>
+          )}/>
+          <Route path='/login' render={()=>(
+            <Login fetchNewState = {this.fetchNewState}/>
+          )}/>
+          <Route path='/home' render={()=>(
+            <Home/>
+          )}/>
+          <Route path='/mosaic' render={()=>(
+            <Mosaic userId={this.state.user.id} hoist={this.hoist}/>
+          )}/>
+          <Route exact path='/addjournal' render={()=>(
+            <AddJournal fetchNewState = {this.fetchNewState}/>
+          )}/>
+          <Route path='/journal' render={()=>(
+            <Journal journal = {this.state.activeTile}/>
+          )}/>
+          <Route exact path='/about' render={()=>(
+            <About/>
+          )}/>
+        </div>
       </BrowserRouter>
     )
   }

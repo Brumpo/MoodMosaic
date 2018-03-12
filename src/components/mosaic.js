@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Link, Route} from 'react-router-dom';
+import {BrowserRouter, Link, Route, Redirect} from 'react-router-dom';
 import Scroll from './scroll.js';
 import Nav from './nav.js';
 import Tile from './tiles.js'
 import AtAGlance from './atAGlance.js'
+import Journal from './journal.js'
+import AddJournal from './addJournal'
 import {setUp, yeartodate} from '../dateProto.js'
 import seeds from '../seeders.js'
 
@@ -18,11 +20,12 @@ export default class Mosaic extends Component{
       tiles: [],
       atAGlance: 'please mouse over a tile to view at a glance stats for that day'
     }
-    this.componentWillMount = this.componentWillMount.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
     this.updateAtAGlance = this.updateAtAGlance.bind(this)
     this.getTiles = this.getTiles.bind(this)
   }
-  async componentWillMount(){
+
+  async componentDidMount(){
     setUp()
     let today = new Date()
     let start = today.getFOM()
@@ -31,6 +34,7 @@ export default class Mosaic extends Component{
     console.log(start,end)
     this.getTiles(start, end, year)
   }
+
   async getTiles(start, end, year, filter = this.state.filter){
     let result = await fetch(`http://localhost:4200/api/dates/?uuid=${this.props.userId}&year=${year}&start=${start}&end=${end}`)
     let json = await result.json()
@@ -53,22 +57,29 @@ export default class Mosaic extends Component{
     console.log(this.state)
     return(
       <div>
-        <Nav/>
-        <div className={this.state.filter}>
-        {
-          this.state.tiles.map((tile)=>{
-            if(tile.day>=this.state.start){
-              if(tile.day<=this.state.end){
-                return (<Tile tile={tile} updateAtAGlance={this.updateAtAGlance}/>)
+      <Redirect to={`/mosaic/?start=${this.state.start}&end=${this.state.end}&year=${this.state.year}`}/>
+      <div>
+        <div>
+          <div className={this.state.filter}>
+          {
+            this.state.tiles.map((tile)=>{
+              if(tile.day>=this.state.start){
+                if(tile.day<=this.state.end){
+                  return (<Tile tile={tile}
+                    updateAtAGlance={this.updateAtAGlance}
+                    toggleJournal={this.toggleJournal}
+                    hoist={this.props.hoist}/>)
+                }
               }
-            }
-          })
-        }
+            })
+          }
+          </div>
+          <Scroll getTiles={this.getTiles} filter={this.state.filter}
+           start={this.state.start} end={this.state.end}
+           mid={Math.max(this.state.start + this.state.end)/2} year={this.state.year}/>
+          <AtAGlance atAGlance={this.state.atAGlance}/>
         </div>
-        <Scroll getTiles={this.getTiles} filter={this.state.filter}
-         start={this.state.start} end={this.state.end}
-         mid={Math.max(this.state.start + this.state.end)/2} year={this.state.year}/>
-        <AtAGlance atAGlance={this.state.atAGlance}/>
+      </div>
       </div>
     )
   }

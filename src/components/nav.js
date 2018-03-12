@@ -18,14 +18,17 @@ export default class Nav extends Component{
 
   render(){
     return(
-      <div className='nav'>
-        {this.state.expanded ?
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Help</li>
-          </ul>
-          :null}
+      <div>
+        <i id='Navburger' className="material-icons">menu</i>
+        <div className='nav'>
+          {this.state.expanded ?
+            <ul>
+              <li>Home</li>
+              <li>About</li>
+              <li>Help</li>
+            </ul>
+            :null}
+        </div>
       </div>
     )
   }

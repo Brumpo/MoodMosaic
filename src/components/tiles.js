@@ -14,10 +14,13 @@ export default class Tile extends Component {
 
   render(){
     return(
+      <Link to={`/journal/?day=${this.props.tile.day}&year=${this.props.tile.year}`}>
       <div className='tile' onMouseEnter={(e)=>{this.displayAtAGlance(true)}}
-                            onMouseLeave={(e)=>{this.displayAtAGlance(false)}}>
+                            onMouseLeave={(e)=>{this.displayAtAGlance(false)}}
+                            onClick={(e)=>{this.props.hoist(this.props.tile)}}>
         <p>{this.props.tile.day}</p>
       </div>
+      </Link>
     )
   }
 }
