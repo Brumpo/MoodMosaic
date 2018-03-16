@@ -129,8 +129,8 @@ describe('year to date()', function(){
     let actual = yeartodate(60, 2018)
     let expected = new Date('March 1, 2018, 23:15:30 GMT+11:00')
     assert.equal(actual.toString(), expected.toString())
-    actual = yeartodate(2,2018)
-    expected = new Date('January 2, 2018, 23:15:30 GMT+11:00')
+    actual = yeartodate(227,2018)
+    expected = new Date('August 15, 2018, 23:15:30 GMT+11:00')
     assert.equal(actual.toString(), expected.toString())
   })
   it('should work for leap years', function(){

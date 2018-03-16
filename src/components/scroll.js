@@ -23,6 +23,9 @@ export default class Scroll extends Component {
         if(this.props.filter === 'year') date = yeartodate(1,year) //reset to january if its a year
         start = date.getFOW()
         end = date.getLOW()
+        if(start<0){
+           start = Math.abs(start)
+        }
         break;
       case 'month':
         if(this.props.filter === 'year') date = yeartodate(1,year) //reset to january if its a year
@@ -40,6 +43,9 @@ export default class Scroll extends Component {
             date = yeartodate(365, --year)
             start = date.getFOW()
             end = date.getLOW()
+            if(start<0){
+               start = Math.abs(start)
+            }
           }else{
             start = start - 7
             end = end - 7
@@ -74,7 +80,7 @@ export default class Scroll extends Component {
             ++year
             mid = mid-365
           }
-          date = yeartodate(mid + 30, year)
+          date = yeartodate((mid + 30), year)
           start = date.getFOM()
           end = date.getLOM()
         }else{
@@ -94,7 +100,7 @@ export default class Scroll extends Component {
 
   render(){
     return(
-      <div>
+      <div className='title'>
         <span onClick={(e)=>{this.onClick('back')}}>{'<< '}</span>
         <span onClick={(e)=>{this.onClick('week')}}>week | </span>
         <span onClick={(e)=>{this.onClick('month')}}>month | </span>

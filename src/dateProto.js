@@ -65,7 +65,7 @@ function yeartodate(doy, year){
       break;
     }
   }
-  var months = ['January','Febuary','March','April','May','June','July','Agust'
+  var months = ['January','Febuary','March','April','May','June','July','August'
   ,'September','October','November','December']
   var month = months[monthindex]
   return new Date(`${month} ${dayindex}, ${year}, 23:15:30 GMT+11:00`)

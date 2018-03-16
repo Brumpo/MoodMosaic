@@ -37,11 +37,9 @@ class App extends Component {
   }
 
   hoist(state){
-    if(state.day){
       this.setState({
         activeTile: state
       })
-    }
   }
 
   async getUser(){
@@ -136,13 +134,13 @@ class App extends Component {
             <Home/>
           )}/>
           <Route path='/mosaic' render={()=>(
-            <Mosaic userId={this.state.user.id} hoist={this.hoist}/>
+            <Mosaic userId={this.state.user.id} hoist={this.hoist} keys={this.state.atAGlance}/>
           )}/>
           <Route exact path='/addjournal' render={()=>(
             <AddJournal fetchNewState = {this.fetchNewState}/>
           )}/>
           <Route path='/journal' render={()=>(
-            <Journal journal = {this.state.activeTile}/>
+            <Journal journal = {this.state.activeTile} keys={this.state.atAGlance}/>
           )}/>
           <Route exact path='/about' render={()=>(
             <About/>
