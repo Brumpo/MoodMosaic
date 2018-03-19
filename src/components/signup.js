@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 
 export default class Signup extends Component{
   constructor(props) {
@@ -26,16 +26,25 @@ export default class Signup extends Component{
   }
 
   render(){
-    if(this.state.error===false) return <Redirect to='/login'/>
+    if(this.state.error===false) return <Redirect to='/home'/>
     return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' ref='fname' placeholder='first name'></input>
-          <input type='text' ref='lname' placeholder='last name'></input>
-          <input type='text' ref='email' placeholder='email'></input>
-          <input type='password' ref='password' placeholder='password'></input>
-          <input type='submit'></input>
+      <div className='container'>
+      <div className='center-align'>
+      <h1 className='title'>New to Mosaic?</h1>
+      <p className='text'>Signup and take the first step toward tracking your mental health</p>
+      </div>
+        <form className= 'form'onSubmit={this.handleSubmit}>
+          <input id='inputs' type='text' ref='fname' placeholder='first name'></input>
+          <input id='inputs' type='text' ref='lname' placeholder='last name'></input>
+          <input id='inputs' type='text' ref='email' placeholder='email'></input>
+          <input id='inputs' type='password' ref='password' placeholder='password'></input>
+          <div className='center-align'>
+          <input className='button' type='submit'></input>
+          </div>
         </form>
+        <div className='center-align'>
+        <p className='subtitle2'><Link to='/login'>Already have an account?</Link></p>
+        </div>
         {this.state.error ? <h1>{this.state.error}</h1> : null}
       </div>
     )

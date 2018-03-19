@@ -16,23 +16,40 @@ export default class Home extends Component {
     '#38761d', '#6aa84f', '#b6d7a8', '#00ff00', '#6d9eeb', '#00ffff', '#ff00ff', '#0fffc7', '#00ff00']
     var tiles = []
     for (var i = 0; i < colors.length; i++) {
-      tiles.push({backgroundColor: colors[i]})
+      tiles.push({
+        backgroundColor: {backgroundColor: colors[i]}
+      })
     }
     this.setState({tiles})
   }
 
+  junk(fake,funct,trick){
+    //this is a dead end......
+    //By the power of greyskull
+  }
   render(){
     return(
-      <div>
+      <div className='container row'>
         <h1 className='title'>Welcome to Moodmosaic</h1>
         <p className='text'>Moodmosaic delivers a fully customizable daily
         tracker that displays as a mosaic calendar to quickly glance at your progress
         for a week, month or even the whole year</p>
         <p className='text'>The colors map to the following scale:</p>
         <div className='tutorial'>
-        {this.state.tiles.map((tile)=><Tile tile={tile}/>)}
+        {this.state.tiles.map((tile)=><Tile tile={tile} updateAtAGlance={this.junk} hoist={this.junk} filter='tutorial'/>)}
         </div>
-        <Link to='/mosaic'>Continue</Link>
+        <div className='row'>
+        <div className='col s6'>
+        <div className='center-align'>
+        <Link to='/mosaic' className='button'>Continue with defaults</Link>
+        </div>
+        </div>
+        <div className='col s6'>
+        <div className='center-align'>
+        <Link to='/AtaGlance/edit' className='button'>Customize Attributes</Link>
+        </div>
+        </div>
+        </div>
       </div>
     )
   }

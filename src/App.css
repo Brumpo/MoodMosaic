@@ -30,18 +30,46 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 2em;
 }
 .week{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 2em;
 }
 .year{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 2em;
 }
-.tile{
+.tutorial{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  margin-bottom: 10em;
+}
+.tile-week{
+  height: 15em;
+  width: 15em;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+.tile-month{
+  height: 10em;
+  width: 10em;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+.tile-year{
+  height: 4em;
+  width: 4em;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+.tile-tutorial{
   height: 5em;
   width: 5em;
   padding-left: 10px;
@@ -64,6 +92,10 @@
 }
 .button{
   background-color: #4B4B4B;
+  padding-left:2em;
+  padding-right: 2em;
+  border: 2px solid #4B4B4B;
+  color: white;
 }
 #Navburger{
   color: #2699FB;
@@ -83,4 +115,38 @@ body
     width: 100%;
     height: 100%;
     background-attachment: fixed;
+}
+#inputs {
+    background-color: #4B4B4B;
+    padding-left: 2em;
+    border: 1px solid #4B4B4B;
+    color: white;
+}
+#input-med{
+  background-color: #4B4B4B;
+  padding-top: .5em;
+  padding-bottom: 9.5em;
+  padding-left: 2em;
+  height: 20%;
+  border: 1px solid #4B4B4B;
+  color: white;
+}
+#input-lrg{
+  background-color: #4B4B4B;
+  padding-top: .5em;
+  padding-bottom: 19.5em;
+  padding-left: 2em;
+  height: 50%;
+  border: 1px solid #4B4B4B;
+  color: white;
+}
+#AaG{
+  height: 50em;
+  margin-top: 2em;
+}
+#pad-bot{
+  margin-bottom: 2em;
+}
+#button{
+  background-color: #4B4B4B;
 }

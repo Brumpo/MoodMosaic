@@ -7,16 +7,24 @@ export default class AtAGlance extends Component {
   }
 
   render(){
+    console.log(this.props.atAGlance)
     if(this.props.atAGlance.default){
       return(
-        <div>
+        <div className='AaG'>
           <h1 className='title'>At A Glance</h1>
           <p className='text'>{this.props.atAGlance.default}</p>
         </div>
       )
+    }else if (this.props.atAGlance.undef) {
+      return(
+        <div className='AaG'>
+          <h1 className='title'>At A Glance</h1>
+          <p className='text'>{this.props.atAGlance.undef}</p>
+        </div>
+      )
     }else{
       return(
-        <div>
+        <div className='AaG'>
           <h1 className='title'>At A Glance</h1>
           <ul className='text'>
             <li>{this.props.atAGlance.x1.split(',')[0] + ':'}<span>{' ' + this.props.atAGlance.x1.split(',')[1]}</span></li>

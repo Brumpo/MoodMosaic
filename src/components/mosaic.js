@@ -14,9 +14,6 @@ export default class Mosaic extends Component{
     super(props)
     this.state = {
       filter:'month',
-      start: -1,
-      end: -1,
-      year: 2018,
       tiles: [],
       atAGlance: {default: 'please mouse over a tile to view at a glance stats for that day'},
       padFront:0,
@@ -26,31 +23,34 @@ export default class Mosaic extends Component{
     this.updateAtAGlance = this.updateAtAGlance.bind(this)
     this.getTiles = this.getTiles.bind(this)
     this.normalizeTiles = this.normalizeTiles.bind(this)
+    this.getTitle = this.getTitle.bind(this)
   }
 
   normalizeTiles(){
     setUp()
-    if(this.state.start==-1) return
-    const length = (this.state.end-this.state.start) + 1
+    if(this.props.start==-1) return
+    const length = (this.props.end-this.props.start) + 1
     var tiles = []
     if(this.state.filter=='month'){
-      var padding = yeartodate(this.state.start, this.state.year).getFOW()
-      var padFront = this.state.start - padding
+      var padding = yeartodate(this.props.start, this.props.year).getFOW()
+      var padFront = this.props.start - padding
       if(padding<0){
         padFront = padding + 367
       }
-      var padEnd= yeartodate(this.state.end, this.state.year).getLOW() - this.state.end
+      var padEnd= yeartodate(this.props.end, this.props.year).getLOW() - this.props.end
       console.log('padFront', padFront)
       for (let i = 1; i < padFront; i++) {
-        tiles.push({backgroundColor: 'black'})
+        tiles.push({
+          backgroundColor: {backgroundColor: 'black'}
+        })
       }
     }
-    var day = this.state.start
+    var day = this.props.start
     for(let i=0;i<length;i++){
       tiles.push(this.state.tiles[i] ||
         {
          day,
-         year : '',
+         year : this.props.year,
          userId : '',
          x1 : '',
          x2 : '',
@@ -60,6 +60,7 @@ export default class Mosaic extends Component{
          x6 : '',
          summary : '',
          journal : '',
+         backgroundColor: {backgroundColor: 'white'},
          })
       day++
     }
@@ -82,10 +83,8 @@ export default class Mosaic extends Component{
   async getTiles(start, end, year, filter = this.state.filter){
     let result = await fetch(`http://localhost:4200/api/dates/?uuid=${this.props.userId}&year=${year}&start=${start}&end=${end}`)
     let json = await result.json()
+    this.props.dateCallback(start,end,year)
     this.setState({
-      start: start,
-      end: end,
-      year: year,
       tiles: json.data,
       filter: filter
     })
@@ -98,13 +97,20 @@ export default class Mosaic extends Component{
     })
   }
 
+  getTitle(){
+    setUp()
+    var mid = Math.max((this.props.start + this.props.end)/2)
+    var date = yeartodate(mid, this.props.year)
+    var monthIndex = date.getMonth()
+    }
+
   render(){
     console.log(this.state)
     return(
       <div>
-      <Redirect to={`/mosaic/?start=${this.state.start}&end=${this.state.end}&year=${this.state.year}`}/>
+      <Redirect to={`/mosaic/?start=${this.props.start}&end=${this.props.end}&year=${this.props.year}`}/>
       <div className='row'>
-        <div id={this.state.filter} className='col s9'>
+        <div className='container col s9'>
           <div className={this.state.filter}>
           {
             this.state.tiles.map((tile)=>{
@@ -115,19 +121,22 @@ export default class Mosaic extends Component{
                 keys={this.props.keys}
                 padFront={this.state.padFront}
                 padEnd={this.state.padEnd}
-                start={this.state.start}
-                end={this.state.end}/>)
+                start={this.props.start}
+                end={this.props.end}
+                filter={this.state.filter}/>)
             })
           }
           </div>
         </div>
-      <div id= 'AaG' className='container col s3'>
+      <div id='AaG' className='container col s3'>
       <AtAGlance atAGlance={this.state.atAGlance} keys={this.props.keys}/>
       </div>
       </div>
+      <div className='center-align'>
       <Scroll getTiles={this.getTiles} filter={this.state.filter}
-       start={this.state.start} end={this.state.end}
-       mid={Math.max((this.state.start + this.state.end)/2)} year={this.state.year}/>
+       start={this.props.start} end={this.props.end}
+       mid={Math.max((this.props.start + this.props.end)/2)} year={this.props.year}/>
+      </div>
       </div>
     )
   }

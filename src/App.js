@@ -28,18 +28,27 @@ class App extends Component {
         'sleep',
         'diet',
         'social'
-      ]
+      ],
+      start: -1,
+      end: -1,
+      year: 1970
     }
     this.fetchNewState = this.fetchNewState.bind(this)
     this.hoist = this.hoist.bind(this)
     this.getUser = this.getUser.bind(this)
     this.fetchNewAaG = this.fetchNewAaG.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.dateCallback = this.dateCallback.bind(this)
   }
 
   hoist(state){
       this.setState({
         activeTile: state
       })
+  }
+
+  componentDidMount(){
+
   }
 
   async getUser(){
@@ -69,7 +78,6 @@ class App extends Component {
   }
 
   async fetchNewAaG(method, body, route){
-    body.userId = 1
     body = JSON.stringify(body)
     var response = await fetch(`http://localhost:4200/api/${route}`,{
       method:method,
@@ -84,11 +92,15 @@ class App extends Component {
     var json = await response.json()
     if(json.message) return {error: json.message}
     //{error: 'At a Glance failed to update, please try again'}
+    json = json.data
     var atAGlance = []
     for (let key in json){
       atAGlance.push(json[key])
     }
-    this.setState({atAGlance})
+    console.log(atAGlance)
+    this.setState({
+      atAGlance:atAGlance
+    })
     return {error:false}
   }
 
@@ -116,6 +128,11 @@ class App extends Component {
     var result = this.getUser() ? {error: false} : {error: 'something went wrong with Authorization, please try login/signup again'}
     return result
   }
+
+  dateCallback(start, end, year){
+    this.setState({start,end,year})
+  }
+
   render() {
     console.log('app', this.state)
     return (
@@ -134,19 +151,19 @@ class App extends Component {
             <Home/>
           )}/>
           <Route path='/mosaic' render={()=>(
-            <Mosaic userId={this.state.user.id} hoist={this.hoist} keys={this.state.atAGlance}/>
-          )}/>
-          <Route exact path='/addjournal' render={()=>(
-            <AddJournal fetchNewState = {this.fetchNewState}/>
+            <Mosaic userId={this.state.user.id} hoist={this.hoist} keys={this.state.atAGlance} start={this.state.start} end={this.state.end} year={this.state.year} dateCallback={this.dateCallback}/>
           )}/>
           <Route path='/journal' render={()=>(
             <Journal journal = {this.state.activeTile} keys={this.state.atAGlance}/>
+          )}/>
+          <Route path='/add/journal' render={()=>(
+            <AddJournal fetchNewState = {this.fetchNewState} journal= {this.state.activeTile} keys={this.state.atAGlance} uuid={this.state.user.id} dateCallback={this.dateCallback}/>
           )}/>
           <Route exact path='/about' render={()=>(
             <About/>
           )}/>
           <Route exact path='/AtaGlance/edit' render={()=>(
-            <ChangeAtaGlance fetchNewAaG={this.fetchNewAaG}/>
+            <ChangeAtaGlance fetchNewAaG={this.fetchNewAaG} keys={this.state.atAGlance}/>
           )}/>
         </div>
       </BrowserRouter>

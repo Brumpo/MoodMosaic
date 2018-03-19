@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import {Link, Redirect} from 'react-router-dom'
 export default class ChangeAtaGlance extends Component {
   constructor(props) {
       super(props)
       this.state = {
-        error: false
+        error: ''
       }
       this.onSubmit = this.onSubmit.bind(this)
   }
@@ -28,16 +28,28 @@ export default class ChangeAtaGlance extends Component {
   }
 
   render(){
+    console.log(this.state.error)
+    if(this.state.error===false) return <Redirect to='/mosaic'/>
     return(
+      <div className = 'container'>
+      <div className='center-align'>
+      <h1 className='title'>Edit your at a glance attributes</h1>
+      <h5 id='pad-bot' className='text'>you were previously tracking {
+        this.props.keys[0]}, {this.props.keys[1]}, {this.props.keys[2]}, {this.props.keys[3]}, {
+        this.props.keys[4]}, and {this.props.keys[5]}</h5>
+      </div>
       <form onSubmit={this.onSubmit}>
-        <input type='text' ref='core1' placeholder='core1'></input>
-        <input type='text' ref='core2' placeholder='core2'></input>
-        <input type='text' ref='core3' placeholder='core3'></input>
-        <input type='text' ref='support1' placeholder='support1'></input>
-        <input type='text' ref='support2' placeholder='support2'></input>
-        <input type='text' ref='support3' placeholder='support3'></input>
-        <input type='submit'></input>
+        <input id='inputs' type='text' ref='core1' placeholder='First primary attribute (used in color scale)'></input>
+        <input id='inputs' type='text' ref='core2' placeholder='Second primary attribute (used in color scale)'></input>
+        <input id='inputs' type='text' ref='core3' placeholder='Third primary attribute (used in color scale)'></input>
+        <input id='inputs' type='text' ref='support1' placeholder='attribute'></input>
+        <input id='inputs' type='text' ref='support2' placeholder='attribute'></input>
+        <input id='inputs' type='text' ref='support3' placeholder='attribute'></input>
+        <div className='center-align'>
+        <input className='button' type='submit'></input>
+        </div>
       </form>
+      </div>
     )
   }
 }

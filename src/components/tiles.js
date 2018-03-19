@@ -9,7 +9,17 @@ export default class Tile extends Component {
   }
 
   displayAtAGlance(start){
-    var atAGlance = start ? this.props.tile : {default : 'please mouse over a tile to view at a glance stats for that day'}
+    var atAGlance
+    switch (start) {
+      case 0:
+        atAGlance = {default : 'please mouse over a tile to view at a glance stats for that day'}
+        break;
+      case 1:
+        atAGlance = this.props.tile
+        break;
+      default:
+        atAGlance = {undef: 'No information yet, please click on the tile to log'}
+    }
     this.props.updateAtAGlance(atAGlance)
   }
 
@@ -24,19 +34,23 @@ export default class Tile extends Component {
 
   render(){
     console.log('intile')
-    if(this.props.tile.backgroundColor){
+    if(this.props.tile.backgroundColor || !this.props.tile.x1){
       return(
-        <div className='tile' style={this.props.tile}>
-        </div>
+        <Link to={`/add/journal/?day=${this.props.tile.day}&year=${this.props.tile.year}`}>
+          <div className={`tile-${this.props.filter}`} style={this.props.tile.backgroundColor}
+                                      onMouseEnter={(e)=>{this.displayAtAGlance(2)}}
+                                      onMouseLeave={(e)=>{this.displayAtAGlance(0)}}
+                                      onClick={(e)=>{this.props.hoist(this.props.tile)}}>
+          </div>
+        </Link>
       )
     }else{
       return(
         <Link to={`/journal/?day=${this.props.tile.day}&year=${this.props.tile.year}`}>
-        <div className='tile' onMouseEnter={(e)=>{this.displayAtAGlance(true)}}
-                              onMouseLeave={(e)=>{this.displayAtAGlance(false)}}
+        <div className={`tile-${this.props.filter}`} onMouseEnter={(e)=>{this.displayAtAGlance(1)}}
+                              onMouseLeave={(e)=>{this.displayAtAGlance(0)}}
                               onClick={(e)=>{this.props.hoist(this.props.tile)}}
                               style={this.colors()}>
-          <p>{this.props.tile.day}</p>
         </div>
         </Link>
       )
