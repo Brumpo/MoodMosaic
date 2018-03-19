@@ -23,6 +23,7 @@ export default class Tile extends Component {
   }
 
   render(){
+    console.log('intile')
     if(this.props.tile.backgroundColor){
       return(
         <div className='tile' style={this.props.tile}>

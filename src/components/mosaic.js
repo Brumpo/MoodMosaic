@@ -32,13 +32,16 @@ export default class Mosaic extends Component{
     setUp()
     if(this.state.start==-1) return
     const length = (this.state.end-this.state.start) + 1
-    console.log(length, this.state.tiles.length);
     var tiles = []
     if(this.state.filter=='month'){
-      var padFront = this.state.start - yeartodate(this.state.start, this.state.year).getFOW()
+      var padding = yeartodate(this.state.start, this.state.year).getFOW()
+      var padFront = this.state.start - padding
+      if(padding<0){
+        padFront = padding + 367
+      }
       var padEnd= yeartodate(this.state.end, this.state.year).getLOW() - this.state.end
       console.log('padFront', padFront)
-      for (var i = 1; i < padFront; i++) {
+      for (let i = 1; i < padFront; i++) {
         tiles.push({backgroundColor: 'black'})
       }
     }
