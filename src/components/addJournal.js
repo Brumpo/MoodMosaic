@@ -17,7 +17,7 @@ export default class AddJournal extends Component {
     setUp()
     const route = 'create_date'
     const method = 'POST'
-    console.log(this.props)
+    console.log(this.props, 'addJournal')
     let body = {
       userId: this.props.uuid,
       day: this.props.journal.day,

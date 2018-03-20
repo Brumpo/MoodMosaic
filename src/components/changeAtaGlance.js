@@ -31,6 +31,7 @@ export default class ChangeAtaGlance extends Component {
     console.log(this.state.error)
     if(this.state.error===false) return <Redirect to='/mosaic'/>
     return(
+      <div className='col'>
       <div className = 'container'>
       <div className='center-align'>
       <h1 className='title'>Edit your at a glance attributes</h1>
@@ -49,6 +50,7 @@ export default class ChangeAtaGlance extends Component {
         <input className='button' type='submit'></input>
         </div>
       </form>
+      </div>
       </div>
     )
   }

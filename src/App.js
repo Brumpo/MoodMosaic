@@ -19,7 +19,7 @@ class App extends Component {
       activeTile:{},
       user:{
         token: '',
-        id: 1
+        id: -1
       },
       atAGlance:[
         'anxiety',
@@ -29,9 +29,9 @@ class App extends Component {
         'diet',
         'social'
       ],
-      start: -1,
-      end: -1,
-      year: 1970
+      start: false,
+      end: false,
+      year: false
     }
     this.fetchNewState = this.fetchNewState.bind(this)
     this.hoist = this.hoist.bind(this)
@@ -115,6 +115,7 @@ class App extends Component {
       },
       body: body
     })
+    if(route=='create_date') return {error: false}
     var json = await response.json()
     if(!json) return {error: 'something went worng please try again'}
     if(json.error) return {error: 'incorrect user name or password'}
@@ -148,22 +149,37 @@ class App extends Component {
             <Login fetchNewState = {this.fetchNewState}/>
           )}/>
           <Route path='/home' render={()=>(
+            <div>
+            <Nav/>
             <Home/>
+            </div>
           )}/>
           <Route path='/mosaic' render={()=>(
             <Mosaic userId={this.state.user.id} hoist={this.hoist} keys={this.state.atAGlance} start={this.state.start} end={this.state.end} year={this.state.year} dateCallback={this.dateCallback}/>
           )}/>
           <Route path='/journal' render={()=>(
+            <div>
+            <Nav/>
             <Journal journal = {this.state.activeTile} keys={this.state.atAGlance}/>
+            </div>
           )}/>
           <Route path='/add/journal' render={()=>(
+            <div>
+            <Nav/>
             <AddJournal fetchNewState = {this.fetchNewState} journal= {this.state.activeTile} keys={this.state.atAGlance} uuid={this.state.user.id} dateCallback={this.dateCallback}/>
+            </div>
           )}/>
           <Route exact path='/about' render={()=>(
+            <div className='row'>
+            <Nav/>
             <About/>
+            </div>
           )}/>
           <Route exact path='/AtaGlance/edit' render={()=>(
+            <div className='row'>
+            <Nav/>
             <ChangeAtaGlance fetchNewAaG={this.fetchNewAaG} keys={this.state.atAGlance}/>
+            </div>
           )}/>
         </div>
       </BrowserRouter>

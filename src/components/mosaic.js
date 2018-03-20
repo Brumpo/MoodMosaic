@@ -51,7 +51,7 @@ export default class Mosaic extends Component{
         {
          day,
          year : this.props.year,
-         userId : '',
+         userId : this.props.userId,
          x1 : '',
          x2 : '',
          x3 : '',
@@ -73,14 +73,15 @@ export default class Mosaic extends Component{
   async componentDidMount(){
     setUp()
     let today = new Date()
-    let start = today.getFOM()
-    let end = today.getLOM()
-    let year = today.getFullYear()
+    let start = this.props.start || today.getFOM()
+    let end = this.props.end || today.getLOM()
+    let year = this.props.year || today.getFullYear()
     console.log(start,end)
     this.getTiles(start, end, year)
   }
 
   async getTiles(start, end, year, filter = this.state.filter){
+    console.log(this.props.userId, 'LOOK AT ME')
     let result = await fetch(`http://localhost:4200/api/dates/?uuid=${this.props.userId}&year=${year}&start=${start}&end=${end}`)
     let json = await result.json()
     this.props.dateCallback(start,end,year)

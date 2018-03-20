@@ -33,7 +33,6 @@ export default class Tile extends Component {
   }
 
   render(){
-    console.log('intile')
     if(this.props.tile.backgroundColor || !this.props.tile.x1){
       return(
         <Link to={`/add/journal/?day=${this.props.tile.day}&year=${this.props.tile.year}`}>

@@ -29,9 +29,9 @@ export default class About extends Component {
   }
   render(){
     return(
-      <div>
-        <h1>about</h1>
-        <div>
+      <div className='col'>
+        <h1 className='title'>about</h1>
+        <div className='text'>
           <h2 onClick={(e)=>{this.onClick('Creator')}}>Creator</h2>
           <h2 onClick={(e)=>{this.onClick('Inspiration')}}>Inspiration</h2>
           <h2 onClick={(e)=>{this.onClick('ref')}}>References/Additional Info</h2>
