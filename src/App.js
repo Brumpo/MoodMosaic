@@ -22,12 +22,12 @@ class App extends Component {
         id: -1
       },
       atAGlance:[
-        'anxiety',
-        'irritablity',
-        'happiness',
-        'sleep',
-        'diet',
-        'social'
+        'Anxiety',
+        'Irritablity',
+        'Happiness',
+        'Sleep',
+        'Diet',
+        'Professional'
       ],
       start: false,
       end: false,
@@ -88,6 +88,7 @@ class App extends Component {
   }
 
   async fetchNewAaG(method, body, route){
+    body.userId = this.state.user.id
     body = JSON.stringify(body)
     var response = await fetch(`http://localhost:4200/api/${route}`,{
       method:method,
@@ -103,6 +104,7 @@ class App extends Component {
     if(json.message) return {error: json.message}
     //{error: 'At a Glance failed to update, please try again'}
     json = json.data
+    console.log('json', json)
     var atAGlance = []
     for (let key in json){
       atAGlance.push(json[key])

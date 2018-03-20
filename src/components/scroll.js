@@ -100,7 +100,7 @@ export default class Scroll extends Component {
 
   render(){
     return(
-      <div className='title'>
+      <div className='subtitle2'>
         <span onClick={(e)=>{this.onClick('back')}}>{'<< '}</span>
         <span onClick={(e)=>{this.onClick('week')}}>week | </span>
         <span onClick={(e)=>{this.onClick('month')}}>month | </span>

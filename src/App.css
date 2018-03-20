@@ -36,7 +36,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 2em;
+  margin-top: 6em;
+  justify-content: center;
 }
 .year{
   display: flex;
@@ -49,7 +50,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 2em;
-  margin-bottom: 10em;
+  margin-bottom: 3em;
 }
 .tile-week{
   height: 15em;
@@ -77,11 +78,14 @@
 }
 .text{
   color:#fff;
+  font-size: 24px;
 }
 .title{
+  font-family: 'Krona One', sans-serif;
   color:#2699FB;
 }
 .subtitle{
+  font-family: 'Krona One', sans-serif;
   color:#2699FB;
 }
 #AaG{
@@ -89,11 +93,14 @@
 }
 .subtitle2{
   color: #2699FB;
+  font-size: 24px;
 }
 .button{
   background-color: #4B4B4B;
-  padding-left:2em;
-  padding-right: 2em;
+  padding-left:5.5em;
+  padding-right: 5.5em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
   border: 2px solid #4B4B4B;
   color: white;
 }
@@ -102,6 +109,8 @@
 }
 #root{
   background-color: #000;
+  width: 100%;
+  height: 100%;
 }
 html, body
 {
@@ -114,7 +123,6 @@ body
     background-color: #000;
     width: 100%;
     height: 100%;
-    background-attachment: fixed;
 }
 #inputs {
     background-color: #4B4B4B;
@@ -149,8 +157,25 @@ body
 }
 #button{
   background-color: #4B4B4B;
+  width:11em;
+  height:3em;
 }
 #navslide{
   opacity: 0.8;
   height: 80em;
+}
+#marginRight{
+  margin-right: 16em;
+}
+.loaf{
+  height: 14em;
+}
+.splash{
+  height: 80em;
+  width: 100%;
+  background-image: url('http://78.media.tumblr.com/d6d0246ca0dffa230f03be2521b3210f/tumblr_obfjz6Bd9f1runoqyo2_r1_540.gif');
+  /* background-image: url('https://ak5.picdn.net/shutterstock/videos/22745935/thumb/1.jpg'); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }

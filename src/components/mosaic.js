@@ -159,7 +159,7 @@ export default class Mosaic extends Component{
       <AtAGlance atAGlance={this.state.atAGlance} keys={this.props.keys}/>
       </div>
       </div>
-      <div className='center-align'>
+      <div id='marginRight'className='center-align'>
       <Scroll getTiles={this.getTiles} filter={this.state.filter}
        start={this.props.start} end={this.props.end}
        mid={Math.max((this.props.start + this.props.end)/2)} year={this.props.year}/>

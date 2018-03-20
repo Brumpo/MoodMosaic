@@ -25,9 +25,13 @@ export default class Journal extends Component{
     console.log('renderjournal', this.props);
     return(
       <div className={`col s${col}`}>
-      <div className='container center-align'>
+      <div className='container'>
+      <div className='center-align'>
         <h1 className='title'>{date}</h1>
+        </div>
+        <div className='center-align'>
         <h2 className='subtitle'>At a Glance</h2>
+        </div>
         <ul>
           <li className='subtitle2'>{this.props.journal.x1.split(',')[0] + ': '}<span className ='text'>{this.props.journal.x1.split(',')[1]}</span></li>
           <li className='subtitle2'>{this.props.journal.x2.split(',')[0] + ': '}<span className ='text'>{this.props.journal.x2.split(',')[1]}</span></li>
@@ -36,13 +40,17 @@ export default class Journal extends Component{
           <li className='subtitle2'>{this.props.journal.x5.split(',')[0] + ': '}<span className ='text'>{this.props.journal.x5.split(',')[1]}</span></li>
           <li className='subtitle2'>{this.props.journal.x6.split(',')[0] + ': '}<span className ='text'>{this.props.journal.x6.split(',')[1]}</span></li>
         </ul>
+        <div className='center-align'>
         <h2 className='subtitle'>Summary</h2>
+        </div>
         <p className='text'>{this.props.journal.summary}</p>
+        <div className='center-align'>
         <h2 className='subtitle'>Journal</h2>
+        </div>
         <p className='text'>{this.props.journal.journal}</p>
         <div className='row container'>
-        <div className='center-align'>
-        <Link className='button' to='/mosaic' style={{marginLeft: '20em'}}>Back</Link>
+        <div className='center-align' style={{ marginTop: '7em'}}>
+        <Link className='button' to='/mosaic' style={{marginLeft: '15em'}}>Back</Link>
         <Link className='button' to='/mosaic' style={{marginLeft: '4em'}}>Edit</Link>
         </div>
         </div>

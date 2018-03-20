@@ -30,9 +30,9 @@ export default class Tile extends Component {
   colors(){
     if(!this.props.tile.x1) return {backgroundColor: '#fff'}
     let sum = (parseInt(this.props.tile.x1.split(',')[1]) + parseInt(this.props.tile.x2.split(',')[1]) + parseInt(this.props.tile.x3.split(',')[1])) - 3
-    let colors = ['#20124d', '#000a82', '#3200ff', '#674ea7', '#8e7cc3', '#741b47', '#4c1130', '#5b0f00', '#990000',
-    '#cc0000', '#e69138', '#b45f06', '#783f04', '#7f6000', '#ff9900', '#f6b26b', '#ffd966', '#0c343d', '#274e13',
-    '#38761d', '#6aa84f', '#b6d7a8', '#00ff00', '#6d9eeb', '#00ffff', '#ff00ff', '#0fffc7', '#00ff00']
+    let colors = ['#20124d', '#000a82', '#0c343d', '#3200ff', '#674ea7', '#8e7cc3','#ff00ff', '#741b47', '#4c1130', '#5b0f00', '#990000',
+    '#cc0000', '#e69138', '#b45f06', '#783f04', '#7f6000', '#ff9900', '#f6b26b', '#ffd966', '#274e13',
+    '#38761d', '#6aa84f', '#b6d7a8', '#6d9eeb', '#00ffff', '#0fffc7', '#00ff00', '#FFDF00']
     return {backgroundColor: colors[sum]}
   }
 

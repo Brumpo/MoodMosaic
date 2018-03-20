@@ -19,7 +19,7 @@ export default class Nav extends Component{
               <li><Link to='/Mosaic' style={{color: 'white'}}>Mosaic</Link></li>
               <li><Link to='/About' style={{color: 'white'}}>About</Link></li>
               <li><Link to='/AtaGlance/edit' style={{color: 'white'}}>Change Attributes</Link></li>
-              <li><Link to='/' style={{color: 'white'}}>Logout</Link></li>
+              <li onClick={(e)=>{this.props.toggleExpanded()}}><Link to='/' style={{color: 'white'}}>Logout</Link></li>
             </ul>
             </div>
             :null}
