@@ -5,7 +5,10 @@ export default class Landing extends Component {
   render(){
     return(
       <div className='splash'>
-      <div className='container'>
+      <div className="stars"></div>
+      <div className="twinkling"></div>
+      <div className="clouds"></div>
+      <div className='container' style={{position: 'relative', zIndex:4}}>
         <div className='loaf'>
         </div>
         <h1 id='margin top' className='title'>Mood Mosaic</h1>

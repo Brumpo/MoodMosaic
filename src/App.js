@@ -155,45 +155,89 @@ class App extends Component {
             <Landing/>
           )}/>
           <Route path='/signup' render={()=>(
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div style={{position: 'relative', zIndex:4}}>
             <Signup fetchNewState = {this.fetchNewState}/>
+            </div>
+            </div>
           )}/>
           <Route path='/login' render={()=>(
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div className='row' style={{position: 'relative', zIndex:4}}>
             <Login fetchNewState = {this.fetchNewState}/>
+            </div>
+            </div>
           )}/>
           <Route path='/home' render={()=>(
-            <div className='row'>
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div className='row' style={{position: 'relative', zIndex:4}}>
             <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
             <Home expanded={this.state.nav}/>
             </div>
+            </div>
           )}/>
           <Route path='/mosaic' render={()=>(
-            <div className='row'>
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div className='row' style={{position: 'relative', zIndex:4}}>
             <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
             <Mosaic userId={this.state.user.id} hoist={this.hoist} keys={this.state.atAGlance} start={this.state.start} end={this.state.end} year={this.state.year} dateCallback={this.dateCallback} expanded={this.state.nav}/>
             </div>
+            </div>
           )}/>
           <Route path='/journal' render={()=>(
-            <div className='row'>
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div className='row' style={{position: 'relative', zIndex:4}}>
             <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
             <Journal journal = {this.state.activeTile} keys={this.state.atAGlance} expanded={this.state.nav}/>
             </div>
+            </div>
           )}/>
           <Route path='/add/journal' render={()=>(
-            <div className='row'>
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div className='row' style={{position: 'relative', zIndex:4}}>
             <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
             <AddJournal fetchNewState = {this.fetchNewState} journal= {this.state.activeTile} keys={this.state.atAGlance} uuid={this.state.user.id} dateCallback={this.dateCallback} expanded={this.state.nav}/>
             </div>
+            </div>
           )}/>
           <Route exact path='/about' render={()=>(
-            <div className='row'>
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div className='row' style={{position: 'relative', zIndex:4}}>
             <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
             <About/>
             </div>
+            </div>
           )}/>
           <Route exact path='/AtaGlance/edit' render={()=>(
-            <div className='row'>
+            <div>
+            <div className="stars"></div>
+            <div className="twinkling"></div>
+            <div className="clouds"></div>
+            <div className='row' style={{position: 'relative', zIndex:4}}>
             <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
             <ChangeAtaGlance fetchNewAaG={this.fetchNewAaG} keys={this.state.atAGlance} expanded={this.state.nav}/>
+            </div>
             </div>
           )}/>
         </div>
