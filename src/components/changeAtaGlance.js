@@ -29,9 +29,10 @@ export default class ChangeAtaGlance extends Component {
 
   render(){
     console.log(this.state.error)
+    var col = this.props.expanded ? '8' : '11'
     if(this.state.error===false) return <Redirect to='/mosaic'/>
     return(
-      <div className='col'>
+      <div className={`col s${col}`}>
       <div className = 'container'>
       <div className='center-align'>
       <h1 className='title'>Edit your at a glance attributes</h1>

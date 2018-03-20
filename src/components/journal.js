@@ -21,8 +21,10 @@ export default class Journal extends Component{
   render(){
     setUp()
     var date = this.serialize()
+    var col = this.props.expanded ? '8' : '11'
     console.log('renderjournal', this.props);
     return(
+      <div className={`col s${col}`}>
       <div className='container center-align'>
         <h1 className='title'>{date}</h1>
         <h2 className='subtitle'>At a Glance</h2>
@@ -44,6 +46,7 @@ export default class Journal extends Component{
         <Link className='button' to='/mosaic' style={{marginLeft: '4em'}}>Edit</Link>
         </div>
         </div>
+      </div>
       </div>
     )
   }

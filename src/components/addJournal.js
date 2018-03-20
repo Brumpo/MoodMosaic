@@ -51,7 +51,9 @@ export default class AddJournal extends Component {
 
   render(){
     if(this.state.error===false) return <Redirect to='/mosaic'/>
+    var col = this.props.expanded ? '8' : '11'
     return(
+      <div className={`col s${col}`}>
       <div className='container'>
         <div className='center-align'>
           <h1 className='title'>{this.serialize()}</h1>
@@ -68,6 +70,7 @@ export default class AddJournal extends Component {
           </form>
           {this.state.error ? <h1 className='title'>{this.state.error}</h1> : null}
         </div>
+      </div>
       </div>
     )
   }

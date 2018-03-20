@@ -29,8 +29,9 @@ export default class About extends Component {
   }
   render(){
     return(
-      <div className='col'>
-        <h1 className='title'>about</h1>
+      <div className='col s8'>
+      <div className='container'>
+        <h1 className='title'>About</h1>
         <div className='text'>
           <h2 onClick={(e)=>{this.onClick('Creator')}}>Creator</h2>
           <h2 onClick={(e)=>{this.onClick('Inspiration')}}>Inspiration</h2>
@@ -38,6 +39,7 @@ export default class About extends Component {
         </div>
         <div>
         {this.displaySwitch()}
+        </div>
         </div>
       </div>
     )

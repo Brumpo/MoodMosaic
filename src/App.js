@@ -31,8 +31,10 @@ class App extends Component {
       ],
       start: false,
       end: false,
-      year: false
+      year: false,
+      nav: false
     }
+    this.toggleExpanded = this.toggleExpanded.bind(this)
     this.fetchNewState = this.fetchNewState.bind(this)
     this.hoist = this.hoist.bind(this)
     this.getUser = this.getUser.bind(this)
@@ -46,6 +48,14 @@ class App extends Component {
         activeTile: state
       })
   }
+
+  toggleExpanded(){
+    let state = this.state.nav ? false : true
+    this.setState({
+      nav:state
+    })
+  }
+
 
   componentDidMount(){
 
@@ -149,36 +159,39 @@ class App extends Component {
             <Login fetchNewState = {this.fetchNewState}/>
           )}/>
           <Route path='/home' render={()=>(
-            <div>
-            <Nav/>
-            <Home/>
+            <div className='row'>
+            <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
+            <Home expanded={this.state.nav}/>
             </div>
           )}/>
           <Route path='/mosaic' render={()=>(
-            <Mosaic userId={this.state.user.id} hoist={this.hoist} keys={this.state.atAGlance} start={this.state.start} end={this.state.end} year={this.state.year} dateCallback={this.dateCallback}/>
+            <div className='row'>
+            <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
+            <Mosaic userId={this.state.user.id} hoist={this.hoist} keys={this.state.atAGlance} start={this.state.start} end={this.state.end} year={this.state.year} dateCallback={this.dateCallback} expanded={this.state.nav}/>
+            </div>
           )}/>
           <Route path='/journal' render={()=>(
-            <div>
-            <Nav/>
-            <Journal journal = {this.state.activeTile} keys={this.state.atAGlance}/>
+            <div className='row'>
+            <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
+            <Journal journal = {this.state.activeTile} keys={this.state.atAGlance} expanded={this.state.nav}/>
             </div>
           )}/>
           <Route path='/add/journal' render={()=>(
-            <div>
-            <Nav/>
-            <AddJournal fetchNewState = {this.fetchNewState} journal= {this.state.activeTile} keys={this.state.atAGlance} uuid={this.state.user.id} dateCallback={this.dateCallback}/>
+            <div className='row'>
+            <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
+            <AddJournal fetchNewState = {this.fetchNewState} journal= {this.state.activeTile} keys={this.state.atAGlance} uuid={this.state.user.id} dateCallback={this.dateCallback} expanded={this.state.nav}/>
             </div>
           )}/>
           <Route exact path='/about' render={()=>(
             <div className='row'>
-            <Nav/>
+            <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
             <About/>
             </div>
           )}/>
           <Route exact path='/AtaGlance/edit' render={()=>(
             <div className='row'>
-            <Nav/>
-            <ChangeAtaGlance fetchNewAaG={this.fetchNewAaG} keys={this.state.atAGlance}/>
+            <Nav toggleExpanded={this.toggleExpanded} expanded={this.state.nav}/>
+            <ChangeAtaGlance fetchNewAaG={this.fetchNewAaG} keys={this.state.atAGlance} expanded={this.state.nav}/>
             </div>
           )}/>
         </div>

@@ -28,7 +28,9 @@ export default class Home extends Component {
     //By the power of greyskull
   }
   render(){
+    var col = this.props.expanded ? '8' : '11'
     return(
+      <div className={`col s${col}`}>
       <div className='container row'>
         <h1 className='title'>Welcome to Moodmosaic</h1>
         <p className='text'>Moodmosaic delivers a fully customizable daily
@@ -50,6 +52,7 @@ export default class Home extends Component {
         </div>
         </div>
         </div>
+      </div>
       </div>
     )
   }

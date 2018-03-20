@@ -107,8 +107,9 @@ export default class Mosaic extends Component{
 
   render(){
     console.log(this.state)
+    var col = this.props.expanded ? '8' : '11'
     return(
-      <div>
+      <div className={`col s${col}`}>
       <Redirect to={`/mosaic/?start=${this.props.start}&end=${this.props.end}&year=${this.props.year}`}/>
       <div className='row'>
         <div className='container col s9'>
