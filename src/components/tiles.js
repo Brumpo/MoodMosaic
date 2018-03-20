@@ -18,7 +18,11 @@ export default class Tile extends Component {
         atAGlance = this.props.tile
         break;
       default:
-        atAGlance = {undef: 'No information yet, please click on the tile to log'}
+        atAGlance = {
+          undef: 'No information yet, please click on the tile to log',
+          day: this.props.tile.day,
+          year: this.props.tile.year
+        }
     }
     this.props.updateAtAGlance(atAGlance)
   }

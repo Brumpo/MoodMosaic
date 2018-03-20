@@ -81,7 +81,6 @@ export default class Mosaic extends Component{
   }
 
   async getTiles(start, end, year, filter = this.state.filter){
-    console.log(this.props.userId, 'LOOK AT ME')
     let result = await fetch(`http://localhost:4200/api/dates/?uuid=${this.props.userId}&year=${year}&start=${start}&end=${end}`)
     let json = await result.json()
     this.props.dateCallback(start,end,year)
@@ -101,18 +100,44 @@ export default class Mosaic extends Component{
   getTitle(){
     setUp()
     var mid = Math.max((this.props.start + this.props.end)/2)
-    var date = yeartodate(mid, this.props.year)
-    var monthIndex = date.getMonth()
+    var year = this.props.year
+    var date = yeartodate(mid, year)
+    var months = ['January','Febuary','March','April','May','June','July','August'
+    ,'September','October','November','December']
+    var title = ''
+    switch (this.state.filter) {
+      case 'month':
+        let monthi = date.getMonth()
+        title = `${months[monthi]} ${year}`
+        break;
+      case 'week':
+        let start = yeartodate(date.getFOW(), year)
+        let startmonthi = start.getMonth()
+        let startday = start.toString().split(' ')[2]
+        let end = yeartodate(date.getLOW(), year)
+        let endmonthi = end.getMonth()
+        let endday = end.toString().split(' ')[2]
+        title = startmonthi==endmonthi ? `Week of ${months[startmonthi]} ${startday}-${endday}` : `Week of ${months[startmonthi]} ${startday}-${months[endmonthi]} ${endday}`
+        break;
+      default:
+        title = year
     }
+    return title
+  }
 
   render(){
     console.log(this.state)
+    var title = this.getTitle()
+    console.log(title, 'title');
     var col = this.props.expanded ? '8' : '11'
     return(
       <div className={`col s${col}`}>
       <Redirect to={`/mosaic/?start=${this.props.start}&end=${this.props.end}&year=${this.props.year}`}/>
       <div className='row'>
         <div className='container col s9'>
+        <div className='center-align'>
+        <h3 className='title'>{title}</h3>
+        </div>
           <div className={this.state.filter}>
           {
             this.state.tiles.map((tile)=>{
