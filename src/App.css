@@ -157,8 +157,12 @@ body
 }
 #button{
   background-color: #4B4B4B;
-  width:11em;
-  height:3em;
+  padding-left:5.5em;
+  padding-right: 5.5em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  border: 2px solid #4B4B4B;
+  color: white;
 }
 #navslide{
   opacity: 0.8;
