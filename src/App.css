@@ -26,3 +26,267 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.month{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+.week{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 6em;
+  justify-content: center;
+}
+.year{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+.tutorial{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+.tile-week{
+  height: 15em;
+  width: 15em;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+.tile-month{
+  height: 8em;
+  width: 8em;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+.tile-year{
+  height: 4em;
+  width: 4em;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+.tile-tutorial{
+  height: 5em;
+  width: 5em;
+  padding-left: 10px;
+  border: 2px solid black;
+}
+.text{
+  color:#fff;
+  font-size: 24px;
+}
+.title{
+  font-family: 'Krona One', sans-serif;
+  color:#2699FB;
+}
+.subtitle{
+  font-family: 'Krona One', sans-serif;
+  color:#2699FB;
+}
+#AaG{
+  background-color: #4B4B4B;
+}
+.subtitle2{
+  color: #2699FB;
+  font-size: 24px;
+}
+.button{
+  background-color: #4B4B4B;
+  padding-left:5.5em;
+  padding-right: 5.5em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  border: 2px solid #4B4B4B;
+  color: white;
+}
+#Navburger{
+  color: #2699FB;
+}
+#root{
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+}
+html, body
+{
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+}
+body
+{
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+}
+.inputs {
+    background-color: #4B4B4B;
+    padding-left: 2em;
+    border: 1px solid #4B4B4B;
+    color: white;
+}
+#input-med{
+  background-color: #4B4B4B;
+  padding-top: .5em;
+  padding-bottom: 9.5em;
+  padding-left: 2em;
+  height: 20%;
+  border: 1px solid #4B4B4B;
+  color: white;
+}
+#input-lrg{
+  background-color: #4B4B4B;
+  padding-top: .5em;
+  padding-bottom: 19.5em;
+  padding-left: 2em;
+  height: 50%;
+  border: 1px solid #4B4B4B;
+  color: white;
+}
+#AaG{
+  height: 50em;
+  margin-top: 2em;
+}
+#pad-bot{
+  margin-bottom: 2em;
+}
+#button{
+  background-color: #4B4B4B;
+  padding-left:5.5em;
+  padding-right: 5.5em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  border: 2px solid #4B4B4B;
+  color: white;
+}
+#navslide{
+  opacity: 0.8;
+  height: 80em;
+}
+#marginRight{
+  margin-right: 16em;
+}
+.loaf{
+  height: 14em;
+}
+.splash{
+  height: 80em;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+@-webkit-keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+@-moz-keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+@-ms-keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+@keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+@-webkit-keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+@-moz-keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+@-ms-keyframes move-clouds-back {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+.stars,
+.twinkling,
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: #000 url(http://sylvaingarnot.fr/media/stars.png) repeat top center;
+  z-index: 0;
+}
+
+.twinkling {
+  background: transparent url(http://sylvaingarnot.fr/media/twinkling.png) repeat top center;
+  z-index: 1;
+  -moz-animation: move-twink-back 200s linear infinite;
+  -ms-animation: move-twink-back 200s linear infinite;
+  -o-animation: move-twink-back 200s linear infinite;
+  -webkit-animation: move-twink-back 200s linear infinite;
+  animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+  background: transparent url(http://sylvaingarnot.fr/media/clouds.png) repeat top center;
+  z-index: 2;
+  -moz-animation: move-clouds-back 200s linear infinite;
+  -ms-animation: move-clouds-back 200s linear infinite;
+  -o-animation: move-clouds-back 200s linear infinite;
+  -webkit-animation: move-clouds-back 200s linear infinite;
+  animation: move-clouds-back 200s linear infinite;
+}
