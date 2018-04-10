@@ -34,9 +34,9 @@ export default class Home extends Component {
       <div className={`col s${col}`}>
       <div className='container row'>
       <div className='center-align'>
-        <h1 className='title'>Welcome to Moodmosaic</h1>
+        <h1 className='title'>Welcome to Mood Mosaic</h1>
         </div>
-        <p className='text'>Moodmosaic delivers a fully customizable daily
+        <p className='text'>Mood Mosaic delivers a fully customizable daily
         tracker that displays as a mosaic calendar to quickly glance at your progress
         for a week, month or even the whole year</p>
         <p className='text'>The colors map to the following scale (top left being worst and bottom right being best possible):</p>
@@ -44,7 +44,7 @@ export default class Home extends Component {
         {this.state.tiles.map((tile)=><Tile tile={tile} updateAtAGlance={this.junk} hoist={this.junk} filter='tutorial'/>)}
         </div>
         <p className='text'>The colors are determined by your 3 key attributes</p>
-        <p className='text'>In Mood Mosaic your attributes are completly customizable but the defaults are as follows:</p>
+        <p className='text'>In Mood Mosaic your attributes are completely customizable but the defaults are as follows:</p>
         <div className='row'>
         <div className='col s6'>
         <div className='center-align'>

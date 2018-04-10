@@ -79,7 +79,6 @@ class App extends Component {
     delete json.fname
     delete json.lname
     delete json.password
-    console.log(json)
     for (let key in json){
       atAGlance.push(json[key])
     }
@@ -138,6 +137,7 @@ class App extends Component {
         id: json.id
       }
     })
+    localStorage.setItem('Login', '/login')
     var result = this.getUser() ? {error: false} : {error: 'something went wrong with Authorization, please try login/signup again'}
     return result
   }

@@ -24,6 +24,12 @@ export default class Login extends Component{
 
   render(){
     if(this.state.error===false) return <Redirect to='/mosaic'/>
+    var styles = {
+        backgroundColor: "#4B4B4B",
+        paddingLeft: "2em",
+        border: "1px solid #4B4B4B",
+        color: "white"
+    }
     return(
       <div>
       <div className='col s5'>
@@ -31,9 +37,9 @@ export default class Login extends Component{
       <div className='col s2'>
       <div className='container center-align'>
       <h1 className= 'title'>Welcome Back</h1>
-        <form className= 'form'onSubmit={this.handleSubmit}>
-          <input id='inputs' type='text' ref='email' placeholder='email'></input>
-          <input id='inputs' type='password' ref='password' placeholder='password'></input>
+        <form className='form' onSubmit={this.handleSubmit}>
+          <input id='inputs' style={styles} type='text' ref='email' placeholder='email'></input>
+          <input className='inputs' style={styles} type='password' ref='password' placeholder='password'></input>
           <div className='center-align'>
           <input className='button' type='submit'></input>
           </div>

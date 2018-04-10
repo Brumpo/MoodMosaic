@@ -30,6 +30,12 @@ export default class ChangeAtaGlance extends Component {
   render(){
     console.log(this.state.error)
     var col = this.props.expanded ? '8' : '11'
+    var styles = {
+        backgroundColor: "#4B4B4B",
+        paddingLeft: "2em",
+        border: "1px solid #4B4B4B",
+        color: "white"
+    }
     if(this.state.error===false) return <Redirect to='/mosaic'/>
     return(
       <div className={`col s${col}`}>
@@ -41,12 +47,12 @@ export default class ChangeAtaGlance extends Component {
         this.props.keys[4]}, and {this.props.keys[5]}</h5>
       </div>
       <form onSubmit={this.onSubmit}>
-        <input id='inputs' type='text' ref='core1' placeholder='First primary attribute (used in color scale)'></input>
-        <input id='inputs' type='text' ref='core2' placeholder='Second primary attribute (used in color scale)'></input>
-        <input id='inputs' type='text' ref='core3' placeholder='Third primary attribute (used in color scale)'></input>
-        <input id='inputs' type='text' ref='support1' placeholder='Secondary Attribute'></input>
-        <input id='inputs' type='text' ref='support2' placeholder='Secondary Attribute'></input>
-        <input id='inputs' type='text' ref='support3' placeholder='Secondary Attribute'></input>
+        <input className='inputs' style={styles} type='text' ref='core1' placeholder='First primary attribute (used in color scale)'></input>
+        <input className='inputs' style={styles} type='text' ref='core2' placeholder='Second primary attribute (used in color scale)'></input>
+        <input className='inputs' style={styles} type='text' ref='core3' placeholder='Third primary attribute (used in color scale)'></input>
+        <input className='inputs' style={styles} type='text' ref='support1' placeholder='Secondary Attribute'></input>
+        <input className='inputs' style={styles} type='text' ref='support2' placeholder='Secondary Attribute'></input>
+        <input className='inputs' style={styles} type='text' ref='support3' placeholder='Secondary Attribute'></input>
         <div className='center-align'>
         <input className='button' type='submit'></input>
         </div>
